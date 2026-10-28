@@ -1,0 +1,29 @@
+{
+  "category": "消耗品",
+  "uses": 3,
+  "discovered": true,
+  "name": "口粮",
+  "description": "一包油纸干粮，占一格，可吃三次。每次供一人吃饱六小时，给同伴吃也消耗一次。",
+  "image": "assets/item/口粮.webp",
+  "body": "每吃一次，当前行装中口粮的剩余次数减少 1 次，饱腹维持 6 小时；两个人吃饱需要两次。吃饱解除饥饿，但不会直接恢复体力，短休仍按 [[guide/休息与恢复]] 处理。吃完后移除空包，腾出行装格。详见 [[guide/饥饿与匮乏]]。",
+  "base_slots": 1,
+  "instance": {
+    "fields": {
+      "slots": {
+        "type": "number",
+        "label": "占格",
+        "compute": "$definition.base_slots"
+      },
+      "uses": {
+        "type": "number",
+        "label": "剩余次数",
+        "required": true,
+        "mutable": true
+      }
+    },
+    "display": [
+      "uses",
+      "slots"
+    ]
+  }
+}

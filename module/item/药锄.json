@@ -1,0 +1,21 @@
+{
+  "category": "武器",
+  "damage": "d6",
+  "discovered": false,
+  "name": "药锄",
+  "description": "一把挖药用的短锄，必要时可防身。",
+  "image": "assets/item/药锄.webp",
+  "base_slots": 1,
+  "instance": {
+    "fields": {
+      "slots": {
+        "type": "number",
+        "label": "占格",
+        "compute": "$definition.base_slots"
+      }
+    },
+    "display": [
+      "slots"
+    ]
+  }
+}

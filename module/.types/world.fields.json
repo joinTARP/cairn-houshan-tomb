@@ -1,0 +1,181 @@
+{
+  "designation": "world_state",
+  "name": "世界状态",
+  "description": "本局探索时间、场景、入场与离墓记录及冒险结局。",
+  "fields": {
+    "elapsed_minutes": {
+      "type": "number",
+      "label": "已经过分钟",
+      "compute": "$self.exploration_turn * 10"
+    },
+    "adventure_result": {
+      "type": "enum",
+      "label": "冒险结果",
+      "options": [
+        "进行中",
+        "通关",
+        "失败"
+      ],
+      "required": true,
+      "mutable": true
+    },
+    "scenes": {
+      "type": "list",
+      "label": "当前场景",
+      "required": true,
+      "mutable": true,
+      "item": {
+        "type": "object",
+        "fields": {
+          "id": {
+            "type": "text",
+            "label": "场景标识",
+            "required": true
+          },
+          "location": {
+            "type": "reference",
+            "label": "当前位置",
+            "targets": [
+              "location"
+            ],
+            "required": true
+          },
+          "members": {
+            "type": "list",
+            "label": "在场角色",
+            "required": true,
+            "item": {
+              "type": "reference",
+              "targets": [
+                "character",
+                "npc"
+              ]
+            }
+          },
+          "activity": {
+            "type": "enum",
+            "label": "活动",
+            "options": [
+              "探索",
+              "战斗",
+              "休息"
+            ],
+            "required": true
+          },
+          "round": {
+            "type": "number",
+            "label": "回合"
+          },
+          "turn": {
+            "type": "reference",
+            "label": "当前行动者",
+            "targets": [
+              "character",
+              "npc"
+            ]
+          },
+          "combat": {
+            "type": "object",
+            "label": "战斗阶段与先攻留痕",
+            "mutable": true,
+            "visibility": "gm",
+            "fields": {
+              "phase": {
+                "type": "enum",
+                "label": "当前阶段",
+                "options": [
+                  "首轮先手",
+                  "敌方",
+                  "首轮后手",
+                  "友方"
+                ],
+                "required": true,
+                "mutable": true
+              },
+              "initiative": {
+                "type": "list",
+                "label": "本次开战先攻",
+                "required": true,
+                "mutable": true,
+                "item": {
+                  "type": "object",
+                  "fields": {
+                    "actor": {
+                      "type": "reference",
+                      "targets": [
+                        "character",
+                        "npc"
+                      ],
+                      "required": true
+                    },
+                    "first": {
+                      "type": "boolean",
+                      "label": "首轮先于敌方",
+                      "required": true
+                    }
+                  }
+                }
+              },
+              "acted": {
+                "type": "list",
+                "label": "本轮已行动的角色或怪物成员标识",
+                "required": true,
+                "mutable": true,
+                "item": {
+                  "type": "text"
+                }
+              },
+              "time_turns_settled": {
+                "type": "number",
+                "label": "本场战斗已结算的探索回合",
+                "mutable": true
+              }
+            }
+          }
+        }
+      }
+    },
+    "ending_reason": {
+      "type": "enum",
+      "label": "结局原因",
+      "options": [
+        "未结束",
+        "离墓",
+        "全灭",
+        "被困"
+      ],
+      "required": true,
+      "mutable": true
+    },
+    "entered_party": {
+      "type": "list",
+      "label": "实际入场队伍",
+      "required": true,
+      "mutable": true,
+      "item": {
+        "type": "reference",
+        "targets": [
+          "character"
+        ]
+      }
+    },
+    "escaped_party": {
+      "type": "list",
+      "label": "已离墓的入场队员",
+      "required": true,
+      "mutable": true,
+      "item": {
+        "type": "reference",
+        "targets": [
+          "character"
+        ]
+      }
+    },
+    "exploration_turn": {
+      "type": "number",
+      "label": "已过探索回合",
+      "required": true,
+      "mutable": true
+    }
+  }
+}

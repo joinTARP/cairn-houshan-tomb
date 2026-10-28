@@ -1,0 +1,39 @@
+{
+  "kind": "野兽",
+  "armor": 0,
+  "attributes": {
+    "strength": 6,
+    "dexterity": 13,
+    "willpower": 4
+  },
+  "attacks": [
+    {
+      "name": "咬",
+      "damage": "d4",
+      "description": "被逼到无路可退时扑咬近处威胁，造成 d4 伤害。"
+    }
+  ],
+  "gmSecret": "见人靠近便退入井壁石缝，不阻路。追入鼠道、堵死退路或攻击时才扑咬；能逃就退，不追出井底。投食效果见 [[location/后洞]]。",
+  "member_hp": [
+    2,
+    2,
+    2,
+    2
+  ],
+  "discovered": false,
+  "name": "墓鼠",
+  "image": "assets/monster/墓鼠.webp",
+  "body": "石缝里传来抓挠声。四只墓鼠在井底的碎屑间钻来钻去，灰毛上结着泥，尾巴湿漉漉的。",
+  "member_strength": [
+    6,
+    6,
+    6,
+    6
+  ],
+  "member_critical": [
+    false,
+    false,
+    false,
+    false
+  ]
+}

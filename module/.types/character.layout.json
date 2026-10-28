@@ -1,0 +1,44 @@
+{
+  "detail": {
+    "type": "handlebars",
+    "templateFile": ".types/character-detail.hbs",
+    "styleFile": ".types/character-detail.css",
+    "width": 600
+  },
+  "card": {
+    "image": "cover",
+    "descriptionLines": 2,
+    "fields": [],
+    "imageAspect": "2:3"
+  },
+  "sheet": {
+    "type": "handlebars",
+    "templateFile": ".types/character-sheet.hbs",
+    "styleFile": ".types/document-layout.css"
+  },
+  "reference": {
+    "style": "link"
+  },
+  "hover": {
+    "enabled": true,
+    "width": "md",
+    "image": "thumbnail",
+    "descriptionLines": 3,
+    "columns": 2,
+    "fields": [
+      "hp",
+      "max_hp",
+      "armor",
+      "current_slots",
+      "deprived"
+    ],
+    "imageAspect": "2:3"
+  },
+  "displayFields": {
+    "packSummary": {
+      "type": "text",
+      "label": "行装摘要",
+      "compute": "self => `行装 ${self.current_slots ?? 0}/10 格`"
+    }
+  }
+}

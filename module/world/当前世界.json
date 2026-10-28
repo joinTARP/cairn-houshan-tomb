@@ -1,0 +1,9 @@
+{
+  "name": "当前状态",
+  "scenes": [],
+  "adventure_result": "进行中",
+  "entered_party": [],
+  "escaped_party": [],
+  "ending_reason": "未结束",
+  "exploration_turn": 0
+}

@@ -1,0 +1,20 @@
+{
+  "category": "工具",
+  "discovered": true,
+  "name": "细绳",
+  "description": "约 10 米长的结实绳索，可承重一人。系牢后可保护同伴攀爬或牵引重物。",
+  "image": "assets/item/细绳.webp",
+  "base_slots": 1,
+  "instance": {
+    "fields": {
+      "slots": {
+        "type": "number",
+        "label": "占格",
+        "compute": "$definition.base_slots"
+      }
+    },
+    "display": [
+      "slots"
+    ]
+  }
+}

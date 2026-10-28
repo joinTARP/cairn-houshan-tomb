@@ -1,0 +1,21 @@
+{
+  "category": "武器",
+  "damage": "d6",
+  "discovered": true,
+  "name": "木棍",
+  "description": "一根可防身的结实木棍。",
+  "image": "assets/item/木棍.webp",
+  "base_slots": 1,
+  "instance": {
+    "fields": {
+      "slots": {
+        "type": "number",
+        "label": "占格",
+        "compute": "$definition.base_slots"
+      }
+    },
+    "display": [
+      "slots"
+    ]
+  }
+}

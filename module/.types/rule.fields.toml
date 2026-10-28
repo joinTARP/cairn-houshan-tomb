@@ -1,0 +1,10 @@
+name = "核心规则"
+description = "供玩家查阅的行动、战斗、资源与恢复规则。"
+
+[fields.tags]
+type = "list"
+label = "标签"
+hideWhenEmpty = true
+
+[fields.tags.item]
+type = "text"

@@ -1,0 +1,21 @@
+{
+  "name": "一袋铜钱",
+  "category": "宝藏",
+  "discovered": false,
+  "description": "一只旧布袋，装着 30 枚铜钱。占 1 格，作为一件随葬财物整袋携带。",
+  "gmSecret": "唯一一袋，放在 [[location/陪葬耳室]] 东墙石台上。整袋作为一件行装，不拆成货币余额。",
+  "base_slots": 1,
+  "instance": {
+    "fields": {
+      "slots": {
+        "type": "number",
+        "label": "占格",
+        "compute": "$definition.base_slots"
+      }
+    },
+    "display": [
+      "slots"
+    ]
+  },
+  "image": "assets/item/一袋铜钱.webp"
+}

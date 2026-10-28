@@ -1,0 +1,74 @@
+{
+  "name": "吕明亮",
+  "description": "吕明亮是一名为宝藏而来的宝藏猎人。他做事直接，愿意动手试办法，也在意这一趟能带走什么。他穿轻皮甲，携短刀、短弓与旅行行囊，带着探墓撬杆。",
+  "image": "assets/character/陈石生-立绘-纯透明.webp",
+  "avatar": "assets/avatar/陈石生-头像-近景.webp",
+  "hp": 4,
+  "max_hp": 4,
+  "survival": {
+    "last_meal_turn": 0,
+    "last_sleep_turn": 0
+  },
+  "attributes": {
+    "strength": 12,
+    "dexterity": 10,
+    "willpower": 9
+  },
+  "equipment": [
+    {
+      "item": "item/猎刀",
+      "state": {}
+    },
+    {
+      "item": "item/短弓",
+      "state": {
+        "uses": 3
+      }
+    },
+    {
+      "item": "item/口粮",
+      "state": {
+        "uses": 3
+      }
+    },
+    {
+      "item": "item/火把",
+      "state": {
+        "remaining_minutes": 60
+      }
+    },
+    {
+      "item": "item/火绒盒",
+      "state": {}
+    },
+    {
+      "item": "item/火把",
+      "state": {
+        "remaining_minutes": 60
+      }
+    },
+    {
+      "item": "item/皮甲",
+      "state": {
+        "worn": true
+      }
+    },
+    {
+      "item": "item/探墓撬杆",
+      "state": {}
+    }
+  ],
+  "effects": [],
+  "injury": {
+    "aid_received": false,
+    "death_deadline_turn": -1
+  },
+  "max_attributes": {
+    "strength": 12,
+    "dexterity": 10,
+    "willpower": 9
+  },
+  "scars": [],
+  "world_state": "world/当前世界",
+  "battle_image": "assets/character/陈石生-战损-纯透明.webp"
+}

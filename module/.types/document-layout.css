@@ -1,0 +1,62 @@
+.document-layout {
+  container-type: inline-size;
+  color: var(--foreground);
+  min-width: 0;
+}
+.layout-grid { display: grid; align-items: start; min-width: 0; }
+.layout-grid > *, .character-hero > *, .sheet-attributes > * { min-width: 0; }
+.columns-1 { grid-template-columns: minmax(0, 1fr); }
+.columns-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.columns-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.columns-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.span-2 { grid-column: span 2; }
+.span-3 { grid-column: span 3; }
+.gap-sm { gap: 8px; }
+.gap-md { gap: 16px; }
+.gap-lg { gap: 24px; }
+.character-name { margin: 0; text-align: center; font-size: 1.2rem; font-weight: 650; line-height: 1.5; overflow-wrap: anywhere; }
+.status-text { margin: 0; font-size: .875rem; }
+.character-sheet { display: grid; gap: 12px; }
+.character-hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 16px; align-items: center; }
+.character-identity { display: grid; gap: 12px; min-width: 0; }
+.sheet-attributes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.vitality { padding: 12px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.condition-list { display: flex; flex-wrap: wrap; gap: 6px; }
+.condition-list:not(:has(.condition)) { display: none; }
+.condition { padding: 3px 8px; border: 1px solid var(--border); border-radius: 5px; font-size: .75rem; color: var(--muted-foreground); }
+.inventory-section { display: grid; gap: 8px; min-width: 0; }
+.section-heading { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+.section-heading h3 { margin: 0; font-size: .875rem; font-weight: 600; }
+.section-heading span { color: var(--muted-foreground); font-size: .75rem; }
+summary { cursor: pointer; font-size: .875rem; font-weight: 600; }
+details[open] > summary { margin-bottom: 8px; }
+@container (max-width: 360px) {
+  .columns-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .span-3 { grid-column: 1 / -1; }
+}
+@container (max-width: 240px) {
+  .character-hero, .columns-2, .columns-3 { grid-template-columns: minmax(0, 1fr); }
+  .span-2 { grid-column: 1 / -1; }
+}
+/* 朴素纸质角色卡：标签留白、数值突出，朱红色标示体力。 */
+.character-sheet { --sheet-accent: #a34538; }
+.character-name { font-family: "Songti SC", "STSong", "Noto Serif CJK SC", serif; letter-spacing: .08em; }
+.attribute { position: relative; display: grid; justify-items: center; gap: 3px; padding: 8px 4px; border-bottom: 1px solid var(--border); border-radius: 2px; }
+.attribute-label, .fact-label { color: var(--muted-foreground); font-size: .75rem; }
+.attribute-value { font-size: 1.6rem; line-height: 1.15; font-weight: 600; font-variant-numeric: tabular-nums; }
+.attribute:focus-visible { outline: 2px solid var(--foreground); outline-offset: 3px; }
+.stat-tooltip { position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%); z-index: 10; display: none; width: max-content; max-width: 200px; padding: 6px 9px; border: 1px solid var(--border); border-radius: 5px; background: var(--background); color: var(--foreground); font-size: .75rem; line-height: 1.4; box-shadow: 0 3px 12px #0002; pointer-events: none; }
+.attribute:hover .stat-tooltip, .attribute:focus .stat-tooltip { display: block; }
+.resource-block { display: grid; gap: 8px; }
+.resource-block strong { font-variant-numeric: tabular-nums; }
+.secondary { color: var(--muted-foreground); font-size: .8rem; font-weight: 400; }
+.hp-meter { display: block; width: 100%; height: 10px; border: 0; border-radius: 2px; background: var(--border); accent-color: #a34538; }
+.hp-meter::-webkit-meter-bar { border: 0; border-radius: 2px; background: var(--border); box-shadow: none; }
+.hp-meter::-webkit-meter-optimum-value { border-radius: 2px; background: #a34538; }
+.hp-meter::-moz-meter-bar { border-radius: 2px; background: #a34538; }
+.fact { display: grid; gap: 4px; min-width: 0; overflow-wrap: anywhere; }
+.scar-list { display: grid; gap: 12px; }
+.scar-record { padding-left: 10px; border-left: 2px solid var(--border); }
+.scar-record p { margin: 5px 0 0; font-size: .8rem; }
+.effect-list { margin: 0; padding-left: 1.25em; font-size: .85rem; }
+.injury-notice { margin: 0; padding: 8px 10px; border-left: 2px solid #a34538; font-size: .85rem; }

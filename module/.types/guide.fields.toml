@@ -1,0 +1,19 @@
+name = "主持人手册"
+description = "仅供主持查阅的冒险攻略、裁定流程与状态维护说明。"
+displayWhen = "false"
+
+[fields.body]
+type = "text"
+visibility = "gm"
+
+[fields.description]
+type = "text"
+visibility = "gm"
+
+[fields.image]
+type = "text"
+visibility = "gm"
+
+[fields.avatar]
+type = "text"
+visibility = "gm"

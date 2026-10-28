@@ -1,0 +1,141 @@
+{
+  "name": "怪物",
+  "description": "敌对生物的资料及单体或群体状态。",
+  "fields": {
+    "kind": {
+      "visibility": "gm",
+      "type": "enum",
+      "label": "类型",
+      "options": [
+        "野兽",
+        "亡灵",
+        "构造",
+        "异常"
+      ],
+      "required": true
+    },
+    "hp": {
+      "visibility": "gm",
+      "type": "number",
+      "label": "剩余总体力",
+      "compute": "$self.member_hp.reduce((sum, hp) => sum + hp, 0)"
+    },
+    "armor": {
+      "visibility": "gm",
+      "type": "number",
+      "label": "护甲",
+      "mutable": true
+    },
+    "status": {
+      "visibility": "gm",
+      "type": "text",
+      "label": "状态",
+      "compute": "$self.count > 0 ? '仍在行动' : '已被击败'"
+    },
+    "attributes": {
+      "visibility": "gm",
+      "type": "object",
+      "label": "属性",
+      "fields": {
+        "strength": {
+          "type": "number",
+          "label": "力量",
+          "required": true
+        },
+        "dexterity": {
+          "type": "number",
+          "label": "敏捷",
+          "required": true
+        },
+        "willpower": {
+          "type": "number",
+          "label": "意志",
+          "required": true
+        }
+      }
+    },
+    "attacks": {
+      "visibility": "gm",
+      "type": "list",
+      "label": "攻击",
+      "item": {
+        "type": "object",
+        "fields": {
+          "name": {
+            "type": "text",
+            "label": "名称",
+            "required": true
+          },
+          "damage": {
+            "type": "text",
+            "label": "伤害",
+            "required": true
+          },
+          "description": {
+            "type": "text",
+            "label": "描述"
+          }
+        }
+      }
+    },
+    "count": {
+      "visibility": "gm",
+      "type": "number",
+      "label": "未击败数量",
+      "compute": "(() => { if ($self.member_hp.length !== $self.member_strength.length || $self.member_hp.length !== $self.member_critical.length) throw new Error('怪物成员记录长度必须一致'); if ($self.member_hp.some(hp => hp < 0) || $self.member_strength.some(strength => strength < 0)) throw new Error('怪物体力与力量不能为负数'); return $self.member_strength.filter((strength, i) => strength > 0 && !$self.member_critical[i]).length; })()"
+    },
+    "drops": {
+      "visibility": "gm",
+      "type": "list",
+      "label": "掉落物",
+      "item": {
+        "type": "reference",
+        "targets": [
+          "item"
+        ]
+      }
+    },
+    "gmSecret": {
+      "type": "text",
+      "label": "主持人秘密",
+      "visibility": "gm"
+    },
+    "member_hp": {
+      "visibility": "gm",
+      "type": "list",
+      "label": "各成员剩余体力（顺序固定）",
+      "required": true,
+      "mutable": true,
+      "item": {
+        "type": "number"
+      }
+    },
+    "discovered": {
+      "type": "boolean",
+      "label": "已向玩家披露",
+      "visibility": "gm",
+      "mutable": true
+    },
+    "member_strength": {
+      "visibility": "gm",
+      "type": "list",
+      "label": "各成员当前力量（顺序固定）",
+      "required": true,
+      "mutable": true,
+      "item": {
+        "type": "number"
+      }
+    },
+    "member_critical": {
+      "visibility": "gm",
+      "type": "list",
+      "label": "各成员重伤失能（顺序固定）",
+      "required": true,
+      "mutable": true,
+      "item": {
+        "type": "boolean"
+      }
+    }
+  },
+  "displayWhen": "$self.discovered === true"
+}

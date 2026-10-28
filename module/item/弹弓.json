@@ -1,0 +1,21 @@
+{
+  "category": "武器",
+  "damage": "d4",
+  "discovered": true,
+  "name": "弹弓",
+  "description": "一把旧弹弓。",
+  "image": "assets/item/弹弓.webp",
+  "base_slots": 1,
+  "instance": {
+    "fields": {
+      "slots": {
+        "type": "number",
+        "label": "占格",
+        "compute": "$definition.base_slots"
+      }
+    },
+    "display": [
+      "slots"
+    ]
+  }
+}

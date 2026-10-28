@@ -1,0 +1,21 @@
+{
+  "category": "武器",
+  "damage": "d8",
+  "discovered": false,
+  "name": "木剑",
+  "description": "一把沉重的近战木剑，占两格。",
+  "image": "assets/item/木剑.webp",
+  "base_slots": 2,
+  "instance": {
+    "fields": {
+      "slots": {
+        "type": "number",
+        "label": "占格",
+        "compute": "$definition.base_slots"
+      }
+    },
+    "display": [
+      "slots"
+    ]
+  }
+}

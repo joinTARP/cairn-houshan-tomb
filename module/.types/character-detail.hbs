@@ -1,0 +1,37 @@
+<article class="character-detail">
+  <header class="detail-hero">
+    <div class="detail-portrait"><tarp-image field="image" image-aspect="2:3" alt="{{name}}的立绘"></tarp-image></div>
+    <div class="detail-profile">
+      <div class="detail-title"><span class="detail-eyebrow">宝藏猎人</span><h1>{{name}}</h1></div>
+      {{#if description}}<div class="detail-description"><tarp-markdown field="description"></tarp-markdown></div>{{/if}}
+      <div class="detail-attributes">
+        <div class="detail-attribute" tabindex="0" aria-describedby="detail-strength-limit"><span>力量</span><strong>{{field "attributes.strength"}}</strong><span class="detail-tooltip" role="tooltip" id="detail-strength-limit">上限 {{field "max_attributes.strength"}}</span></div>
+        <div class="detail-attribute" tabindex="0" aria-describedby="detail-dexterity-limit"><span>敏捷</span><strong>{{field "attributes.dexterity"}}</strong><span class="detail-tooltip" role="tooltip" id="detail-dexterity-limit">上限 {{field "max_attributes.dexterity"}}</span></div>
+        <div class="detail-attribute" tabindex="0" aria-describedby="detail-willpower-limit"><span>意志</span><strong>{{field "attributes.willpower"}}</strong><span class="detail-tooltip" role="tooltip" id="detail-willpower-limit">上限 {{field "max_attributes.willpower"}}</span></div>
+        <div class="detail-attribute"><span>护甲</span><strong>{{field "armor"}}</strong></div>
+      </div>
+    </div>
+  </header>
+  <section class="detail-vitality" aria-label="体力">
+    <div class="detail-section-heading"><h2>体力</h2><span class="detail-hp-value">{{field "hp"}}<span class="detail-muted"> / {{field "max_hp"}}</span></span></div>
+    {{#unless (lookup errors "hp")}}{{#unless (lookup errors "max_hp")}}{{#if values.max_hp}}<meter class="detail-hp-meter" min="0" max="{{values.max_hp}}" value="{{values.hp}}" aria-label="当前体力"></meter>{{/if}}{{/unless}}{{/unless}}
+    <div class="detail-conditions">
+      {{#if values.injury.state}}<span class="detail-condition detail-condition-serious">{{values.injury.state}}</span>{{/if}}
+      {{#each values.effects}}<span class="detail-condition">{{this}}</span>{{/each}}
+      {{#if values.overburdened}}<span class="detail-condition">满载，体力为 0</span>{{/if}}
+      {{#if values.deprived}}<span class="detail-condition">匮乏</span>{{/if}}
+      {{#if values.hungry}}<span class="detail-condition">饥饿</span>{{/if}}
+      {{#if values.sleep_deprived}}<span class="detail-condition">缺乏睡眠</span>{{/if}}
+    </div>
+  </section>
+  <section class="detail-inventory">
+    <div class="detail-section-heading"><h2>随身行装</h2><span class="detail-muted">{{field "current_slots"}} / 10 格</span></div>
+    <tarp-item-grid field="equipment" reference-field="item" quantity-field="quantity" capacity="10" label="随身行装"></tarp-item-grid>
+  </section>
+  {{#if values.scars.length}}
+    <details class="detail-scars"><summary>伤疤记录<span class="detail-muted">{{values.scars.length}} 项</span></summary><div class="detail-scar-list">
+      {{#each values.scars}}<article class="detail-scar"><div class="detail-section-heading"><h3>伤疤 · {{damage}}</h3><span class="detail-muted">{{#if resolved}}已恢复／消耗{{else}}尚未恢复{{/if}}</span></div><p>{{description}}</p><p class="detail-muted">恢复条件：{{recovery}}</p></article>{{/each}}
+    </div></details>
+  {{/if}}
+  {{#if body}}<section class="detail-story"><div class="detail-section-heading"><h2>人物经历</h2></div><tarp-markdown field="body"></tarp-markdown></section>{{/if}}
+</article>

@@ -1,0 +1,50 @@
+{
+  "gmSecret": "火光不能自动震慑亡灵或消除机关；引火效果取决于实际材料与火势。光照与燃烧见 [[guide/光照]]。",
+  "category": "消耗品",
+  "discovered": true,
+  "name": "火把",
+  "description": "一支未点燃的火把，点燃后照亮身旁约 6 米，累计燃烧 60 分钟。主动熄灭或浸水后停止燃烧，干燥时可用火绒盒重新点燃；剩余燃烧时间不会重置，烧尽后不能再用。",
+  "image": "assets/item/火把.webp",
+  "body": "点火、熄灭与燃烧余量详见 [[guide/光照]]；重新点火需要 [[item/火绒盒]]。",
+  "base_slots": 1,
+  "instance": {
+    "fields": {
+      "slots": {
+        "type": "number",
+        "label": "占格",
+        "compute": "$definition.base_slots"
+      },
+      "remaining_minutes": {
+        "type": "number",
+        "label": "熄灭时保留的燃料（分钟）",
+        "required": true,
+        "mutable": true
+      },
+      "ends_at_minutes": {
+        "type": "number",
+        "label": "本次燃烧结束时刻（游戏分钟）",
+        "mutable": true
+      },
+      "available_minutes": {
+        "type": "number",
+        "label": "剩余燃料（分钟）",
+        "compute": "$item.ends_at_minutes == null ? $item.remaining_minutes : max(0, $item.ends_at_minutes - load($self.world_state).elapsed_minutes)"
+      },
+      "lit": {
+        "type": "boolean",
+        "label": "正在照明",
+        "compute": "$item.ends_at_minutes != null && $item.available_minutes > 0"
+      },
+      "light_state": {
+        "type": "text",
+        "label": "光源状态",
+        "compute": "$item.available_minutes <= 0 ? '已燃尽' : ($item.ends_at_minutes == null ? '未点燃' : '点燃中')"
+      }
+    },
+    "display": [
+      "light_state",
+      "available_minutes",
+      "slots"
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "image": "assets/location/老井口.webp",
+  "kind": "遗迹",
+  "danger": "低",
+  "exits": [
+    "location/后洞"
+  ],
+  "features": [
+    "村边老井的井口"
+  ],
+  "gmSecret": "这里是竖井外的安全处，真正攀出井口才算离墓。墓内还有同伴时，可以返回救援；下井与攀井见 [[location/后洞]]。这里没有外援或补给，通关与结算见 [[guide/死亡与结局]]。",
+  "lighting": "自然光",
+  "discovered": false,
+  "known_description": "",
+  "known_exits": [],
+  "name": "老井口",
+  "body": "井口在村边的荒草中，井沿湿滑，外面是结实的地面。",
+  "loose_items": [],
+  "world_state": "world/当前世界"
+}

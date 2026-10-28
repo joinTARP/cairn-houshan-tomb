@@ -1,0 +1,21 @@
+[detail]
+type = "grid"
+columns = 2
+fields = [ "category", "damage", "armor", "slots", "uses", "gmSecret" ]
+order = [ "fields", "body" ]
+
+[card]
+image = "cover"
+descriptionLines = 2
+fields = [ "category", "damage", "armor", "slots", "uses" ]
+
+[reference]
+style = "link"
+
+[hover]
+enabled = true
+width = "md"
+image = "thumbnail"
+descriptionLines = 3
+columns = 2
+fields = [ "category", "damage", "armor", "slots", "uses" ]

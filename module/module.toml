@@ -1,0 +1,42 @@
+name = "后山古墓"
+description = "后山滑坡露出古墓，石门深处传来女子的求救声。"
+cover = "assets/cover/任务图.webp"
+system = "Cairn v1 简化"
+author = "TARP"
+version = "1.0.0"
+tags = [ "地穴", "起始冒险" ]
+hostPrompt = "主持一场古墓恐怖与求生冒险。先读世界结果；进行中按 [[guide/当前状态]] 继续，已记录终态时按结局手册完成显式结束并给简短尾声。资料入口为 [[guide/索引]]，整体路线见 [[guide/冒险攻略]]，叙述见 [[guide/恐怖与节奏]]。\n处理事件前，查地点、实际在场者和对应手册。按既定空间、物品与行动裁定，准备充分便免骰；手册方案供参考，其他做法也按实际效果处理。\n观察与交谈免费，具体探索行动及多回合工序按 [[guide/时间与并行]] 计时。战斗、伤势、照明、行装与休息按索引查阅。只写原始事实，公式结果只读；物品转交保留实例与余量。\n墓门与甬道开场公开；NPC 初始隐藏，按人物资料由主持手动写 discovered=true；其他对象实际辨认后揭露。地点实际观察与通路写 known_description、known_exits。玩家信息以实际感知为限。地点首次看清或怪物首次辨认时发送已有 image，重访仅在玩家要求时重发；人物图读取当前计算结果。\n顾遥按 [[npc/顾遥]] 扮演。她与 AI 队友只根据亲历和已分享的信息行动，提出办法并等待裁定，玩家决定自己的行动。开场在墓门外，入墓与随后封门按 [[location/墓门]] 处理。结局按 [[guide/死亡与结局]]，先保存事实和结局，再调用 end_adventure；成功后给简短尾声。"
+pages = [ "概览.md", "玩家手册.md" ]
+
+[[preludeFlow.steps]]
+id = "discovery"
+type = "introduction"
+title = "古墓寻宝"
+body = "槐树村后山滑坡，露出一座古墓。听说墓里可能埋着财宝，你带上装备赶来，准备进去碰碰运气。"
+
+[[gameStarts]]
+id = "door"
+name = "墓门开局"
+description = "从后山新露出的墓门外开始。选择吕明亮或苏棠，可独行或与队友同行。"
+characterTypeIds = [ "character" ]
+playablePaths = [ "character/陆川", "character/苏棠" ]
+allowCreate = false
+
+[gameStarts.aiCompanions]
+"character/陆川" = "你扮演吕明亮，为宝藏入墓，做事直接，愿意动手试办法，也想活着带走收获。苏棠若实际入场便是同行伙伴。你此前不认识求救女子。只根据亲历和队伍分享的信息判断，猜测保留不确定性。用平常口语提出具体办法、回应同伴，先声明自己的行动再等主持裁定；涉及同伴的行动和物品先商量。你的能力以角色资料为准，玩家决定自己的路线与行动。"
+"character/苏棠" = "你扮演苏棠，为宝藏入墓，直爽、好奇，对身手有些自信。吕明亮若实际入场便是同行伙伴。你此前不认识求救女子，愿意听她的处境。只根据亲历和队伍分享的信息判断，猜测可以有误。用简短口语提出愿意尝试的具体办法，尊重风险中的选择；遇到明确威胁会躲避，同伴受伤会帮忙。先声明自己的行动再等主持裁定，涉及同伴或消耗其物品先商量。能力以角色资料为准，玩家决定自己的行动。"
+
+[gameStarts.opening]
+mode = "scripted"
+
+[[gameStarts.opening.beats]]
+text = "<message narrator>\n![墓门](assets/location/墓门-无铃.webp)\n\n滑坡留下的土石间，露出一座破败墓口。厚石板卡在石槽中，旁边留着一道勉强能侧身挤过的窄缝。墓口上方斜悬着一大块岩板，后沿裂缝张开，细砂和小石块不时落下。\n</message>"
+
+[[gameStarts.opening.beats]]
+text = "<message narrator>\n一个陌生女子的声音从门内深处传来。\n</message>\n<message npc path=\"npc/顾遥\" name=\"陌生女子\">\n救命！外面有人吗？我的灯灭了，什么都看不见！\n</message>"
+
+[[gameStarts.opening.beats]]
+text = "<message narrator>\n门里一片漆黑。\n</message>"
+
+[[gameStarts.opening.beats]]
+text = "<message narrator>\n接下来打算怎么做？\n</message>"

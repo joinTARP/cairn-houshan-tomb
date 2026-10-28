@@ -1,0 +1,38 @@
+{
+  "category": "宝藏",
+  "gmSecret": "只是随葬宝物，没有维持封印或镇压亡灵的作用。冷光只能照明，不能治疗、代替火焰或震慑怪物；取走不引发全墓追杀，也不是通关条件。遮光用 state.active 记录。",
+  "discovered": false,
+  "name": "夜明珠",
+  "description": "一颗持续发光的珠子，只照亮持有者身旁约 3 米，不耗燃料。用厚布包住或收进不透光的容器可暂时遮光。珠子也可作为财物带出古墓。",
+  "image": "assets/item/夜明珠.webp",
+  "base_slots": 1,
+  "instance": {
+    "fields": {
+      "slots": {
+        "type": "number",
+        "label": "占格",
+        "compute": "$definition.base_slots"
+      },
+      "active": {
+        "type": "boolean",
+        "label": "开启／遮光记录",
+        "required": true,
+        "mutable": true
+      },
+      "lit": {
+        "type": "boolean",
+        "label": "正在照明",
+        "compute": "$item.active"
+      },
+      "light_state": {
+        "type": "text",
+        "label": "光源状态",
+        "compute": "$item.active ? '照明中' : '已遮光'"
+      }
+    },
+    "display": [
+      "light_state",
+      "slots"
+    ]
+  }
+}

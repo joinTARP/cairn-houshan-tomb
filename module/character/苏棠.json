@@ -1,0 +1,72 @@
+{
+  "name": "苏棠",
+  "description": "苏棠是一名为宝藏而来的宝藏猎人。她好奇、爽快，对自己的身手有些自信，看到陌生东西常想凑近看看。她穿轻皮甲，腰佩短刀，背旅行行囊，带着绳索和探墓撬杆。",
+  "image": "assets/character/苏棠-立绘-纯透明.webp",
+  "avatar": "assets/avatar/苏棠-头像-近景.webp",
+  "hp": 3,
+  "max_hp": 3,
+  "survival": {
+    "last_meal_turn": 0,
+    "last_sleep_turn": 0
+  },
+  "attributes": {
+    "strength": 8,
+    "dexterity": 12,
+    "willpower": 13
+  },
+  "equipment": [
+    {
+      "item": "item/猎刀",
+      "state": {}
+    },
+    {
+      "item": "item/口粮",
+      "state": {
+        "uses": 3
+      }
+    },
+    {
+      "item": "item/火把",
+      "state": {
+        "remaining_minutes": 60
+      }
+    },
+    {
+      "item": "item/细绳",
+      "state": {}
+    },
+    {
+      "item": "item/火绒盒",
+      "state": {}
+    },
+    {
+      "item": "item/火把",
+      "state": {
+        "remaining_minutes": 60
+      }
+    },
+    {
+      "item": "item/皮甲",
+      "state": {
+        "worn": true
+      }
+    },
+    {
+      "item": "item/探墓撬杆",
+      "state": {}
+    }
+  ],
+  "effects": [],
+  "injury": {
+    "aid_received": false,
+    "death_deadline_turn": -1
+  },
+  "max_attributes": {
+    "strength": 8,
+    "dexterity": 12,
+    "willpower": 13
+  },
+  "scars": [],
+  "world_state": "world/当前世界",
+  "battle_image": "assets/character/苏棠-战损-纯透明.webp"
+}

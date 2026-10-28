@@ -1,0 +1,21 @@
+{
+  "image": "assets/item/铁凿.webp",
+  "name": "铁凿",
+  "category": "工具",
+  "discovered": false,
+  "description": "一根扁口铁凿，占 1 格。借助牢固支点和合适的敲击工具，可扩大缝隙、松动碎砖或清理堵塞；能否撬动取决于材质和受力位置。",
+  "gmSecret": "唯一一根，放在 [[location/陪葬耳室]] 东墙石台上。用途按具体做法裁定，其他可行工具同样有效。",
+  "base_slots": 1,
+  "instance": {
+    "fields": {
+      "slots": {
+        "type": "number",
+        "label": "占格",
+        "compute": "$definition.base_slots"
+      }
+    },
+    "display": [
+      "slots"
+    ]
+  }
+}

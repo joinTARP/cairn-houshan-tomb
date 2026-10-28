@@ -1,0 +1,34 @@
+{
+  "kind": "亡灵",
+  "armor": 1,
+  "attributes": {
+    "strength": 11,
+    "dexterity": 10,
+    "willpower": 8
+  },
+  "attacks": [
+    {
+      "name": "木剑",
+      "damage": "d8",
+      "description": "木剑近身劈砍，造成 d8 伤害。"
+    }
+  ],
+  "drops": [
+    "item/木剑",
+    "item/夜明珠"
+  ],
+  "gmSecret": "守护棺内财物，未开棺时不理会经过者。追击取宝者或攻击者至棺室边界，不追出。挣脱、顶盖、拾剑各占一项行动，不能同时攻击；封住仅使它隔离。失去木剑后用骨手 d4 攻击，到剑所在处用一项行动拾回后恢复 d8。开棺与限制见 [[location/棺室]]。",
+  "member_hp": [
+    6
+  ],
+  "discovered": false,
+  "name": "守墓骷髅",
+  "image": "assets/monster/守墓骷髅.webp",
+  "body": "一具骸骨躺在石棺里，骨缝中积着灰尘，指骨紧紧扣着一把沉重的木剑。",
+  "member_strength": [
+    11
+  ],
+  "member_critical": [
+    false
+  ]
+}

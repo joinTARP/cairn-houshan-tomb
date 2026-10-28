@@ -1,0 +1,259 @@
+{
+  "designation": "character",
+  "name": "人物",
+  "description": "主持控制的 NPC 及其当前状态。",
+  "fields": {
+    "role": {
+      "type": "enum",
+      "label": "身份",
+      "options": [
+        "村民",
+        "守墓"
+      ],
+      "required": true
+    },
+    "hp": {
+      "visibility": "gm",
+      "type": "number",
+      "label": "体力",
+      "required": true,
+      "mutable": true
+    },
+    "max_hp": {
+      "visibility": "gm",
+      "type": "number",
+      "label": "最大体力",
+      "required": true,
+      "mutable": true
+    },
+    "armor": {
+      "visibility": "gm",
+      "type": "number",
+      "label": "护甲",
+      "compute": "clamp(max(0, ...($self.equipment ?? []).map(row => row.state.armor ?? 0)), 0, 3)"
+    },
+    "current_slots": {
+      "visibility": "gm",
+      "type": "number",
+      "label": "已占用格数",
+      "compute": "sum(($self.equipment ?? []), row => row.state.slots * (row.quantity ?? 1))"
+    },
+    "overburdened": {
+      "visibility": "gm",
+      "type": "boolean",
+      "label": "满载",
+      "compute": "$self.current_slots >= 10"
+    },
+    "deprived": {
+      "visibility": "gm",
+      "type": "boolean",
+      "label": "匮乏",
+      "compute": "$self.hungry || $self.sleep_deprived"
+    },
+    "survival": {
+      "visibility": "gm",
+      "type": "object",
+      "label": "生存结算记录",
+      "required": true,
+      "mutable": true,
+      "fields": {
+        "last_meal_turn": {
+          "type": "number",
+          "label": "最近吃饱的探索回合",
+          "required": true,
+          "mutable": true
+        },
+        "last_sleep_turn": {
+          "type": "number",
+          "label": "最近完整睡眠结束的探索回合",
+          "required": true,
+          "mutable": true
+        }
+      }
+    },
+    "attributes": {
+      "visibility": "gm",
+      "type": "object",
+      "label": "属性",
+      "fields": {
+        "strength": {
+          "type": "number",
+          "label": "力量",
+          "required": true,
+          "mutable": true
+        },
+        "dexterity": {
+          "type": "number",
+          "label": "敏捷",
+          "required": true,
+          "mutable": true
+        },
+        "willpower": {
+          "type": "number",
+          "label": "意志",
+          "required": true,
+          "mutable": true
+        }
+      }
+    },
+    "equipment": {
+      "visibility": "gm",
+      "type": "list",
+      "label": "行装",
+      "mutable": true,
+      "item": {
+        "type": "object",
+        "fields": {
+          "item": {
+            "type": "reference",
+            "label": "物品",
+            "targets": [
+              "item"
+            ],
+            "required": true
+          },
+          "quantity": {
+            "type": "number",
+            "label": "数量",
+            "mutable": true
+          }
+        },
+        "instance": {
+          "referenceField": "item",
+          "stateField": "state"
+        }
+      }
+    },
+    "effects": {
+      "type": "list",
+      "label": "异常状态",
+      "mutable": true,
+      "item": {
+        "type": "text"
+      },
+      "hideWhenEmpty": true
+    },
+    "gmSecret": {
+      "type": "text",
+      "label": "主持人秘密",
+      "visibility": "gm"
+    },
+    "discovered": {
+      "type": "boolean",
+      "label": "已向玩家披露",
+      "visibility": "gm",
+      "mutable": true
+    },
+    "injury": {
+      "type": "object",
+      "label": "重伤记录",
+      "required": true,
+      "mutable": true,
+      "visibility": "gm",
+      "fields": {
+        "state": {
+          "type": "enum",
+          "label": "重伤状态",
+          "options": [
+            "重伤未稳定",
+            "重伤已稳定",
+            "死亡"
+          ],
+          "mutable": true,
+          "hideWhenEmpty": true
+        },
+        "death_deadline_turn": {
+          "type": "number",
+          "label": "未救治死亡期限（探索回合，无期限为 -1）",
+          "required": true,
+          "mutable": true
+        },
+        "aid_received": {
+          "type": "boolean",
+          "label": "已获得实际救助",
+          "required": true,
+          "mutable": true
+        }
+      }
+    },
+    "alive": {
+      "type": "boolean",
+      "label": "存活",
+      "visibility": "gm",
+      "compute": "$self.attributes.strength > 0 && $self.injury.state !== '死亡'"
+    },
+    "known_injury": {
+      "type": "text",
+      "label": "伤势",
+      "compute": "$self.injury.state ?? null",
+      "hideWhenEmpty": true
+    },
+    "world_state": {
+      "type": "reference",
+      "label": "本局时间来源",
+      "targets": [
+        "world"
+      ],
+      "required": true,
+      "visibility": "gm"
+    },
+    "hungry": {
+      "visibility": "gm",
+      "type": "boolean",
+      "label": "饥饿",
+      "compute": "load($self.world_state).exploration_turn - $self.survival.last_meal_turn >= 36"
+    },
+    "sleep_deprived": {
+      "visibility": "gm",
+      "type": "boolean",
+      "label": "缺乏睡眠",
+      "compute": "load($self.world_state).exploration_turn - $self.survival.last_sleep_turn >= 144"
+    },
+    "stage": {
+      "type": "enum",
+      "label": "当前处境",
+      "options": [
+        "甬道等待",
+        "跟随队伍",
+        "留在墓内",
+        "已离墓",
+        "已死亡"
+      ],
+      "mutable": true,
+      "visibility": "gm"
+    },
+    "max_attributes": {
+      "type": "object",
+      "label": "属性上限",
+      "required": true,
+      "fields": {
+        "strength": {
+          "type": "number",
+          "label": "最大力量",
+          "required": true
+        },
+        "dexterity": {
+          "type": "number",
+          "label": "最大敏捷",
+          "required": true
+        },
+        "willpower": {
+          "type": "number",
+          "label": "最大意志",
+          "required": true
+        }
+      },
+      "visibility": "gm"
+    },
+    "battle_image": {
+      "type": "text",
+      "label": "战损立绘",
+      "visibility": "gm"
+    },
+    "image": {
+      "type": "text",
+      "compute": "(($self.attributes.strength < $self.max_attributes.strength || ['重伤未稳定', '重伤已稳定', '死亡'].includes($self.injury.state)) && $self.battle_image) ? $self.battle_image : $raw.image"
+    }
+  },
+  "displayWhen": "$self.discovered === true"
+}

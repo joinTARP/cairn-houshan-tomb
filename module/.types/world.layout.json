@@ -1,0 +1,49 @@
+{
+  "detail": {
+    "type": "split",
+    "columns": 1,
+    "fields": [
+      "elapsed_minutes",
+      "adventure_result",
+      "ending_reason"
+    ],
+    "contentFields": [
+      "scenes"
+    ],
+    "order": [
+      "fields",
+      "description",
+      "body"
+    ]
+  },
+  "sheet": {
+    "type": "handlebars",
+    "templateFile": ".types/world-sheet.hbs",
+    "styleFile": ".types/document-layout.css"
+  },
+  "card": {
+    "image": "none",
+    "descriptionLines": 2,
+    "fields": [
+      "elapsed_minutes",
+      "adventure_result"
+    ]
+  },
+  "displayFields": {
+    "elapsed": {
+      "type": "text",
+      "label": "经过时间",
+      "compute": "self => self.elapsed_minutes == null ? '' : `${self.elapsed_minutes} 分钟`"
+    },
+    "location": {
+      "type": "text",
+      "label": "当前位置",
+      "compute": "self => [...new Set((self.scenes ?? []).map(scene => scene.location).filter(Boolean))].map(path => `[[${path}]]`).join('、')"
+    },
+    "activity": {
+      "type": "text",
+      "label": "活动状态",
+      "compute": "self => [...new Set((self.scenes ?? []).map(scene => scene.activity).filter(Boolean))].join('、')"
+    }
+  }
+}

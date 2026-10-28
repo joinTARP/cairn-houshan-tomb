@@ -1,0 +1,20 @@
+{
+  "category": "工具",
+  "discovered": true,
+  "name": "火绒盒",
+  "description": "随身的打火工具，可用一项行动点燃干燥的火把。重新点火只能继续烧剩下的部分，烧尽的火把不能再点燃。",
+  "image": "assets/item/火绒盒.webp",
+  "base_slots": 1,
+  "instance": {
+    "fields": {
+      "slots": {
+        "type": "number",
+        "label": "占格",
+        "compute": "$definition.base_slots"
+      }
+    },
+    "display": [
+      "slots"
+    ]
+  }
+}

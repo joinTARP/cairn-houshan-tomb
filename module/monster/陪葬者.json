@@ -1,0 +1,36 @@
+{
+  "image": "assets/monster/陪葬者-锁链.webp",
+  "name": "陪葬者",
+  "kind": "亡灵",
+  "armor": 0,
+  "attributes": {
+    "strength": 10,
+    "dexterity": 8,
+    "willpower": 8
+  },
+  "attacks": [
+    {
+      "name": "抓击",
+      "damage": "d6",
+      "description": "抓向伸臂可及的声源或触碰它的人，造成 d6 伤害。"
+    }
+  ],
+  "drops": [
+    "item/铁凿",
+    "item/铜钩",
+    "item/旧绳索",
+    "item/一袋铜钱"
+  ],
+  "member_hp": [
+    4
+  ],
+  "member_strength": [
+    10
+  ],
+  "member_critical": [
+    false
+  ],
+  "discovered": false,
+  "body": "干尸颈上套着锈铁环，长链随着动作刮过石地。它的眼窝干瘪，头侧向声响，枯瘦的双手向前摸索。",
+  "gmSecret": "看不见，靠近处的声音和触碰找人；先侧耳、拖链接近，够得着才抓击。它不说话、不护财，也不因还物停手。受远程攻击却够不到攻击者时，在正常敌方阶段缩回石柱背后，避开门口的直射；不会一直站在链端挨射。铁链限制行动，绕柱可收紧，沿原路绕回则松开；解开铁环后可以离室追声。位置、引声与取物见 [[location/陪葬耳室]]。"
+}

@@ -1,0 +1,24 @@
+[detail]
+type = "split"
+columns = 2
+imageAspect = "3:2"
+fields = ["kind", "lighting"]
+contentFields = ["known_exits", "gmSecret"]
+order = ["fields", "body"]
+
+[card]
+image = "cover"
+imageAspect = "3:2"
+descriptionLines = 2
+fields = ["kind", "lighting"]
+
+[reference]
+style = "badge"
+
+[hover]
+enabled = true
+width = "md"
+image = "thumbnail"
+imageAspect = "3:2"
+descriptionLines = 3
+fields = ["kind", "lighting"]

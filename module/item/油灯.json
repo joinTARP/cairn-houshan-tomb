@@ -1,0 +1,49 @@
+{
+  "image": "assets/item/油灯.webp",
+  "category": "工具",
+  "gmSecret": "顾遥的灯被墓道冷风吹灭，尚有约 60 分钟余油；查看可发现灯芯与余油，她愿意借给救援者或同伴。用火绒盒或已有明火可重燃，照亮身旁约 6 米。火焰可用于实际触及处的明火救助。墓内没有现成灯油；光照与燃料按 [[guide/光照]]。",
+  "discovered": false,
+  "name": "油灯",
+  "description": "一盏被风吹灭的油灯，灯芯仍能点燃。剩余灯油可照明约60分钟，占1格；可以借用或交给同伴。",
+  "base_slots": 1,
+  "instance": {
+    "fields": {
+      "slots": {
+        "type": "number",
+        "label": "占格",
+        "compute": "$definition.base_slots"
+      },
+      "remaining_minutes": {
+        "type": "number",
+        "label": "熄灭时保留的燃料（分钟）",
+        "required": true,
+        "mutable": true
+      },
+      "ends_at_minutes": {
+        "type": "number",
+        "label": "本次燃烧结束时刻（游戏分钟）",
+        "mutable": true
+      },
+      "available_minutes": {
+        "type": "number",
+        "label": "剩余燃料（分钟）",
+        "compute": "$item.ends_at_minutes == null ? $item.remaining_minutes : max(0, $item.ends_at_minutes - load($self.world_state).elapsed_minutes)"
+      },
+      "lit": {
+        "type": "boolean",
+        "label": "正在照明",
+        "compute": "$item.ends_at_minutes != null && $item.available_minutes > 0"
+      },
+      "light_state": {
+        "type": "text",
+        "label": "光源状态",
+        "compute": "$item.available_minutes <= 0 ? '已燃尽' : ($item.ends_at_minutes == null ? '未点燃' : '点燃中')"
+      }
+    },
+    "display": [
+      "light_state",
+      "available_minutes",
+      "slots"
+    ]
+  }
+}

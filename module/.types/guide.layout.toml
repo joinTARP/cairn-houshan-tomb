@@ -1,0 +1,9 @@
+[detail]
+type = "grid"
+columns = 1
+fields = ["body"]
+order = ["fields"]
+
+[card]
+image = "none"
+fields = []

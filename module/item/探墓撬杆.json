@@ -1,0 +1,20 @@
+{
+  "name": "探墓撬杆",
+  "description": "约一米长的结实铁撬杆，一端压扁略弯，可撬松盖砖、拨动碎石或支住机构。使用前须确认支点，不能撬动整块墓顶或代替铲子搬砂。占 1 格。",
+  "category": "工具",
+  "base_slots": 1,
+  "discovered": true,
+  "instance": {
+    "fields": {
+      "slots": {
+        "type": "number",
+        "label": "占格",
+        "compute": "$definition.base_slots"
+      }
+    },
+    "display": [
+      "slots"
+    ]
+  },
+  "image": "assets/item/探墓撬杆.webp"
+}

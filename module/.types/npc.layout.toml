@@ -1,0 +1,21 @@
+[detail]
+type = "handlebars"
+templateFile = ".types/npc-detail.hbs"
+styleFile = ".types/document-layout.css"
+
+[card]
+image = "cover"
+imageAspect = "2:3"
+descriptionLines = 2
+fields = [ "role", "known_injury", "effects" ]
+
+[reference]
+style = "link"
+
+[hover]
+enabled = true
+width = "md"
+image = "thumbnail"
+imageAspect = "2:3"
+descriptionLines = 3
+fields = [ "role", "known_injury", "effects" ]

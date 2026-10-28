@@ -1,0 +1,21 @@
+{
+  "image": "assets/item/铜钩.webp",
+  "name": "铜钩",
+  "category": "工具",
+  "discovered": false,
+  "description": "一枚有孔的旧铜钩，占 1 格，可挑动远处小物或穿绳牵引。攀爬前须检查铜钩磨损、挂点牢固程度和绳索是否系紧。",
+  "gmSecret": "唯一一枚，放在 [[location/陪葬耳室]] 东墙石台上。攀井前须检查挂点；没有它也能尝试徒攀。",
+  "base_slots": 1,
+  "instance": {
+    "fields": {
+      "slots": {
+        "type": "number",
+        "label": "占格",
+        "compute": "$definition.base_slots"
+      }
+    },
+    "display": [
+      "slots"
+    ]
+  }
+}

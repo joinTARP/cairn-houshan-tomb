@@ -1,0 +1,198 @@
+name = "地点"
+displayWhen = "$self.discovered === true"
+description = "地点资料、局部状态与玩家已知观察。"
+
+[fields.image]
+type = "text"
+label = "场景图"
+
+[fields.kind]
+hideWhenEmpty = true
+type = "enum"
+label = "地点类型"
+options = [ "遗迹", "危险地点" ]
+
+[fields.lighting]
+type = "enum"
+label = "环境光照"
+mutable = true
+options = [ "自然光", "黑暗" ]
+required = true
+
+[fields.danger]
+visibility = "gm"
+type = "enum"
+label = "危险程度"
+options = [ "低", "中", "高" ]
+mutable = true
+
+
+[fields.inhabitants]
+visibility = "gm"
+type = "list"
+label = "出场人物"
+
+[fields.inhabitants.item]
+type = "reference"
+targets = [ "npc", "monster" ]
+
+[fields.encounters]
+visibility = "gm"
+type = "list"
+label = "可能遭遇"
+
+[fields.encounters.item]
+type = "reference"
+targets = [ "monster" ]
+
+[fields.exits]
+visibility = "gm"
+type = "list"
+label = "出口"
+
+[fields.exits.item]
+type = "reference"
+targets = [ "location" ]
+
+[fields.features]
+visibility = "gm"
+type = "list"
+label = "地点特征"
+
+[fields.features.item]
+type = "text"
+
+[fields.gmSecret]
+type = "text"
+label = "主持人秘密"
+visibility = "gm"
+
+[fields.sealed]
+visibility = "gm"
+type = "boolean"
+label = "入口已封闭"
+mutable = true
+
+[fields.trap_state]
+type = "enum"
+label = "机关状态"
+options = [ "未触发", "已触发", "已支住", "已拆除" ]
+mutable = true
+visibility = "gm"
+
+[fields.mechanism_notes]
+type = "text"
+label = "主持运行记录"
+mutable = true
+visibility = "gm"
+
+[fields.coffin_opened]
+visibility = "gm"
+type = "boolean"
+label = "石棺已打开"
+mutable = true
+
+[fields.skeleton_confined]
+type = "boolean"
+label = "骷髅已被封回棺内"
+mutable = true
+visibility = "gm"
+
+[fields.treasures_taken]
+type = "list"
+label = "已领取宝物"
+mutable = true
+visibility = "gm"
+
+[fields.treasures_taken.item]
+type = "text"
+
+[fields.rats_distracted_until_turn]
+type = "number"
+label = "墓鼠争食结束探索回合"
+mutable = true
+visibility = "gm"
+
+[fields.burial_state]
+type = "enum"
+label = "陪葬者处境"
+options = [ "沉睡", "清醒", "追索" ]
+mutable = true
+visibility = "gm"
+
+[fields.blockage_cleared]
+type = "boolean"
+label = "侧廊已清障"
+mutable = true
+visibility = "gm"
+
+[fields.ambusher_state]
+type = "enum"
+label = "侧廊伏击者的处境"
+options = [ "潜伏", "警觉", "隔挡" ]
+mutable = true
+visibility = "gm"
+
+[fields.body]
+type = "text"
+compute = "$self.known_description || null"
+hideWhenEmpty = true
+
+[fields.description]
+type = "text"
+compute = "$self.known_description || null"
+hideWhenEmpty = true
+
+[fields.discovered]
+type = "boolean"
+label = "已向玩家披露"
+visibility = "gm"
+mutable = true
+
+[fields.known_description]
+type = "text"
+label = "已实际感知的描述"
+visibility = "gm"
+mutable = true
+
+[fields.known_exits]
+hideWhenEmpty = true
+type = "list"
+label = "已发现的通路"
+mutable = true
+
+[fields.known_exits.item]
+type = "reference"
+targets = [ "location" ]
+
+[fields.world_state]
+type = "reference"
+label = "本局时间来源"
+targets = [ "world" ]
+required = true
+visibility = "gm"
+
+[fields.loose_items]
+type = "list"
+label = "放下的物品"
+required = true
+mutable = true
+visibility = "gm"
+
+[fields.loose_items.item]
+type = "object"
+
+[fields.loose_items.item.instance]
+referenceField = "item"
+stateField = "state"
+
+[fields.loose_items.item.fields.item]
+type = "reference"
+label = "物品"
+targets = [ "item" ]
+required = true
+
+[fields.loose_items.item.fields.quantity]
+type = "number"
+label = "数量"
+mutable = true

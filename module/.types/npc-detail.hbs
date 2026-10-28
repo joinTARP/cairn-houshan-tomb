@@ -1,0 +1,16 @@
+<section class="document-layout">
+  <div class="layout-grid columns-3 gap-lg">
+    <tarp-image field="image" image-aspect="2:3"></tarp-image>
+    <div class="layout-grid columns-1 gap-md span-2">
+      <h2 class="character-name">{{name}}</h2>
+      <tarp-markdown field="description"></tarp-markdown>
+      {{#if values.role}}<div class="fact"><span class="fact-label">身份</span><span>{{field "role"}}</span></div>{{/if}}
+      {{#if values.known_injury}}<div class="fact"><span class="fact-label">可见伤势</span><span>{{field "known_injury"}}</span></div>{{/if}}
+      {{#if values.effects.length}}<ul class="effect-list">{{#each values.effects}}<li>{{this}}</li>{{/each}}</ul>{{/if}}
+      <tarp-markdown field="body"></tarp-markdown>
+      {{#if values.gmSecret}}
+        <details><summary>主持资料</summary><tarp-markdown field="gmSecret"></tarp-markdown></details>
+      {{/if}}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,40 @@
+{
+  "name": "皮甲",
+  "description": "厚皮缝制的短甲，护住胸背，两侧皮扣固定。穿着时提供 1 点护甲，占 1 格；脱下仍携带时继续占格，但不提供防护。",
+  "category": "护甲",
+  "base_slots": 1,
+  "base_armor": 1,
+  "discovered": true,
+  "body": "吕明亮与苏棠进墓前各自穿好一件皮甲。伤害骰点先减去当前护甲，再扣体力与力量；皮甲不会增加或恢复体力。携带多件同类皮甲不叠加防护。脱下、重新穿上和转交的状态维护见 [[guide/行装]]，受伤按 [[guide/伤害]] 结算。",
+  "instance": {
+    "fields": {
+      "slots": {
+        "type": "number",
+        "label": "占格",
+        "compute": "$definition.base_slots"
+      },
+      "worn": {
+        "type": "boolean",
+        "label": "是否穿着",
+        "required": true,
+        "mutable": true
+      },
+      "armor": {
+        "type": "number",
+        "label": "提供护甲",
+        "compute": "$item.worn ? $definition.base_armor : 0"
+      },
+      "wear_state": {
+        "type": "text",
+        "label": "穿着状态",
+        "compute": "$item.worn ? '已穿着' : '未穿着'"
+      }
+    },
+    "display": [
+      "wear_state",
+      "armor",
+      "slots"
+    ]
+  },
+  "image": "assets/item/皮甲.webp"
+}

@@ -1,0 +1,21 @@
+{
+  "image": "assets/item/旧绳索.webp",
+  "name": "旧绳索",
+  "category": "工具",
+  "discovered": false,
+  "description": "约十米长的旧绳索，卷放在石台上，绳身尚完好，占一格。系牢并检查固定处后可承重一人，用于牵引、保护攀爬或协助搬运，不能同时悬吊两人。",
+  "gmSecret": "唯一一条，放在 [[location/陪葬耳室]] 东墙石台上。承重能力与 [[item/细绳]] 相同；搬运伤员见 [[location/后洞]]。",
+  "base_slots": 1,
+  "instance": {
+    "fields": {
+      "slots": {
+        "type": "number",
+        "label": "占格",
+        "compute": "$definition.base_slots"
+      }
+    },
+    "display": [
+      "slots"
+    ]
+  }
+}

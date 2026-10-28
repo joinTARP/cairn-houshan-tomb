@@ -1,0 +1,54 @@
+name = "物品"
+displayWhen = "$self.discovered === true"
+description = "可复用的物品定义及实例状态定义。"
+
+[fields.category]
+type = "enum"
+label = "类别"
+options = [ "武器", "护甲", "消耗品", "工具", "宝藏", "其他" ]
+hideWhenEmpty = true
+
+[fields.damage]
+type = "text"
+label = "伤害"
+hideWhenEmpty = true
+
+[fields.armor]
+type = "number"
+label = "护甲"
+compute = "$self.base_armor ?? null"
+hideWhenEmpty = true
+
+[fields.slots]
+type = "number"
+label = "占用格数"
+compute = "$self.base_slots ?? null"
+hideWhenEmpty = false
+
+[fields.uses]
+hideWhenEmpty = true
+type = "number"
+label = "使用次数"
+mutable = true
+
+[fields.gmSecret]
+type = "text"
+label = "主持人秘密"
+visibility = "gm"
+
+[fields.discovered]
+type = "boolean"
+label = "已向玩家披露"
+visibility = "gm"
+mutable = true
+
+[fields.base_slots]
+type = "number"
+label = "固定占格"
+required = true
+visibility = "gm"
+
+[fields.base_armor]
+type = "number"
+label = "基础防护值"
+visibility = "gm"
